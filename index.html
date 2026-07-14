@@ -12,32 +12,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Ganti "musikku.mp3" dengan nama file musik lo (pastikan satu folder dengan file HTML ini) -->
-<audio id="bg-music" loop>
-  <source src="Sweet Seventeen Sendy.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
-<Script>
-// Screen 1 -> Screen 2 Transition
-btnOpen.addEventListener("click", () => {
-  // --- TAMBAHKAN LOGIC INI ---
-  const bgMusic = document.getElementById("bg-music");
-  if (bgMusic) {
-    bgMusic.play().catch(error => {
-      console.log("Gagal muter musik karena block browser:", error);
-    });
-  }
-  // ---------------------------
 
-  s1.classList.remove("screen-active");
-  s1.classList.add("screen-hidden");
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+      <source src="Sweet Seventeen Sendy.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
 
-  // Trigger the magnificent full screen cascade
-  triggerFullScreenPetals();
-  
-  // ... (sisa kode lo yang lain)
-});
-</script>
     <style>
       :root {
         --bg-top: #2d0b12;
@@ -156,7 +137,6 @@ btnOpen.addEventListener("click", () => {
           opacity: 1;
         }
       }
-      /* Adjusted transform-origin to prevent weird flame shifting */
       .flame {
         transform-origin: 50% 80%;
         animation: flicker 0.6s infinite alternate;
@@ -288,7 +268,7 @@ btnOpen.addEventListener("click", () => {
       .env-front-left {
         position: absolute;
         inset: 0;
-        clip-path: polygon(0 0, 50% 50%, 0 100%);
+        clip-path: polygon(0 0, 50% 50., 0 100%);
         z-index: 3;
         background: #eae0d3;
         border-radius: 4px;
@@ -504,8 +484,6 @@ btnOpen.addEventListener("click", () => {
           HAPPY SWEET<br />SEVENTEEN
         </h1>
 
-        <!-- LARGE PROMINENT CAKE - OVERFLOW VISIBLE APPLIED -->
-        <!-- pt-6 ensures the flame animation is never clipped vertically -->
         <div
           class="animate-float mb-10 relative w-64 h-64 md:w-80 md:h-80 pt-6"
           style="overflow: visible"
@@ -572,7 +550,7 @@ btnOpen.addEventListener("click", () => {
               stroke-width="2.5"
             />
 
-            <!-- Flame with carefully bounded coordinates to prevent clipping -->
+            <!-- Flame -->
             <path
               class="flame"
               d="M100 -12 C108 0, 112 10, 100 18 C88 10, 92 0, 100 -12 Z"
@@ -633,7 +611,7 @@ btnOpen.addEventListener("click", () => {
             <div class="env-front-right"></div>
             <div class="env-front-bottom"></div>
 
-            <!-- Watercolor Floral Graphic on bottom left -->
+            <!-- Watercolor Floral Graphic -->
             <svg
               class="absolute bottom-[5px] left-[5px] w-24 h-24 z-10 opacity-80 pointer-events-none mix-blend-multiply"
               viewBox="0 0 100 100"
@@ -738,7 +716,7 @@ btnOpen.addEventListener("click", () => {
               PROUD OF UUU, HAPPY SWEET SEVENTEEN BOCILLLL I ! 🥳✨
             </p>
 
-            <!-- Bottom Cake Illustration (Minimalist) -->
+            <!-- Bottom Cake Illustration -->
             <div class="flex justify-center mt-8 opacity-70">
               <svg
                 width="45"
@@ -781,8 +759,6 @@ btnOpen.addEventListener("click", () => {
         id="screen-4"
         class="screen screen-hidden w-full flex flex-col items-center"
       >
-        <!-- Highly Realistic Grand Bouquet (Image Asset) -->
-        <!-- Glassmorphic premium frame styling matching the dark red aesthetic -->
         <div
           class="animate-pop-in relative z-10 w-[85%] max-w-sm aspect-[4/5] mb-6 rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-[#E0BFB8] p-2 glass"
         >
@@ -798,7 +774,6 @@ btnOpen.addEventListener("click", () => {
           class="floating-note text-center text-[#2D0B12] px-8 py-6 rounded-md shadow-2xl font-playfair italic text-xl w-72 max-w-[90%] relative z-20"
         >
           "Happy sweet seventeen bocilll"
-          <!-- Tiny push pin detail -->
           <div
             class="absolute top-3 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-red-900 shadow-md opacity-90 border border-white"
           ></div>
@@ -820,7 +795,7 @@ btnOpen.addEventListener("click", () => {
         // Magnificent Full-Screen Petal Cascade
         function triggerFullScreenPetals() {
           const emojis = ["🌸", "💮", "🍃", "✨", "🌸", "🌸", "🤍"];
-          const petalCount = 70; // Dense cascade
+          const petalCount = 70;
 
           for (let i = 0; i < petalCount; i++) {
             setTimeout(() => {
@@ -830,7 +805,7 @@ btnOpen.addEventListener("click", () => {
                 emojis[Math.floor(Math.random() * emojis.length)];
 
               const startX = Math.random() * 100;
-              const endX = startX + (Math.random() * 30 - 15); // dramatic wind sway
+              const endX = startX + (Math.random() * 30 - 15);
               const scale = Math.random() * 0.8 + 0.5;
               const rot = Math.random() * 720;
 
@@ -839,13 +814,13 @@ btnOpen.addEventListener("click", () => {
               petal.style.setProperty("--scale", scale);
               petal.style.setProperty("--rot", `${rot}deg`);
 
-              const duration = Math.random() * 3 + 3; // 3s to 6s
+              const duration = Math.random() * 3 + 3;
               petal.style.animationDuration = `${duration}s`;
 
               document.body.appendChild(petal);
 
               setTimeout(() => petal.remove(), duration * 1000);
-            }, Math.random() * 1800); // Stagger over 1.8 seconds for smooth continuous flow
+            }, Math.random() * 1800);
           }
         }
 
@@ -878,8 +853,16 @@ btnOpen.addEventListener("click", () => {
           }
         }
 
-        // Screen 1 -> Screen 2 Transition
+        // Screen 1 -> Screen 2 Transition + AUDIO TRIGGER FIXED
         btnOpen.addEventListener("click", () => {
+          // Mainkan musik di sini (Aman dari block Autoplay browser karena dipicu interaksi user)
+          const bgMusic = document.getElementById("bg-music");
+          if (bgMusic) {
+            bgMusic.play().catch(error => {
+              console.log("Gagal muter musik karena block browser:", error);
+            });
+          }
+
           s1.classList.remove("screen-active");
           s1.classList.add("screen-hidden");
 
@@ -938,7 +921,6 @@ btnOpen.addEventListener("click", () => {
           s3.classList.remove("screen-active");
           s3.classList.add("screen-hidden");
 
-          // Add a small celebration burst on the button itself
           triggerLocalBurst(btnGift, 20);
 
           setTimeout(() => {
