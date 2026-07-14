@@ -934,7 +934,38 @@
         const player = document.getElementById('player');
         const s1 = document.getElementById('screen-1');
         const s2 = document.getElementById('screen-2');
-        // ... (sisanya paste semua yang tadi gue kasih)
+        const s3 = document.getElementById('screen-3');
+
+// Tambahan target untuk ikon musik di Screen 3
+const playIcon = document.getElementById('playIcon');
+const pauseIcon = document.getElementById('pauseIcon');
+
+// Screen 1 -> Screen 2 Transition
+btnOpen.addEventListener('click', () => {
+    // 1. Matikan Screen 1, Nyalakan Screen 2
+    s1.classList.remove('screen-active');
+    s1.classList.add('screen-hidden');
+
+    // 2. Mulai Putar Musik!
+    if (player.paused) {
+        player.play().catch(error => {
+            console.error("Gagal putar musik secara otomatis:", error);
+            // Browser mungkin memblokir, tapi interaksi pengguna (klik tombol)
+            // biasanya cukup untuk memicu play()
+        });
+        // Pastikan status ikon di Screen 3 juga benar (nunjukin pause)
+        if (playIcon && pauseIcon) {
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+        }
+    }
+
+    // 3. Tampilkan Screen 2
+    setTimeout(() => {
+        s2.classList.remove('screen-hidden');
+        s2.classList.add('screen-active');
+    }, 400); 
+});
     </script>
   </body>
 </html>
