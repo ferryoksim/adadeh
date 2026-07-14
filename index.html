@@ -12,6 +12,32 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Ganti "musikku.mp3" dengan nama file musik lo (pastikan satu folder dengan file HTML ini) -->
+<audio id="bg-music" loop>
+  <source src="Sweet Seventeen Sendy.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+<Script>
+// Screen 1 -> Screen 2 Transition
+btnOpen.addEventListener("click", () => {
+  // --- TAMBAHKAN LOGIC INI ---
+  const bgMusic = document.getElementById("bg-music");
+  if (bgMusic) {
+    bgMusic.play().catch(error => {
+      console.log("Gagal muter musik karena block browser:", error);
+    });
+  }
+  // ---------------------------
+
+  s1.classList.remove("screen-active");
+  s1.classList.add("screen-hidden");
+
+  // Trigger the magnificent full screen cascade
+  triggerFullScreenPetals();
+  
+  // ... (sisa kode lo yang lain)
+});
+</script>
     <style>
       :root {
         --bg-top: #2d0b12;
@@ -921,51 +947,6 @@
           }, 900);
         });
       });
-    </script>
-    <audio id="player" loop src="Sweet Seventeen Sendy.mp3"></audio>
-
-    <!-- ============================================= -->
-    <!--     DISINI TEMPATNYA JS KITA, BROO! 😎       -->
-    <!-- ============================================= -->
-    <script>
-        // Paste script JS revisi yang tadi gue kasih di sini!
-
-        const btnOpen = document.getElementById('btn-open');
-        const player = document.getElementById('player');
-        const s1 = document.getElementById('screen-1');
-        const s2 = document.getElementById('screen-2');
-        const s3 = document.getElementById('screen-3');
-
-// Tambahan target untuk ikon musik di Screen 3
-const playIcon = document.getElementById('playIcon');
-const pauseIcon = document.getElementById('pauseIcon');
-
-// Screen 1 -> Screen 2 Transition
-btnOpen.addEventListener('click', () => {
-    // 1. Matikan Screen 1, Nyalakan Screen 2
-    s1.classList.remove('screen-active');
-    s1.classList.add('screen-hidden');
-
-    // 2. Mulai Putar Musik!
-    if (player.paused) {
-        player.play().catch(error => {
-            console.error("Gagal putar musik secara otomatis:", error);
-            // Browser mungkin memblokir, tapi interaksi pengguna (klik tombol)
-            // biasanya cukup untuk memicu play()
-        });
-        // Pastikan status ikon di Screen 3 juga benar (nunjukin pause)
-        if (playIcon && pauseIcon) {
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
-        }
-    }
-
-    // 3. Tampilkan Screen 2
-    setTimeout(() => {
-        s2.classList.remove('screen-hidden');
-        s2.classList.add('screen-active');
-    }, 400); 
-});
     </script>
   </body>
 </html>
